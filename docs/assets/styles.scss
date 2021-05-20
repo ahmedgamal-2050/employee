@@ -1,0 +1,64 @@
+$primaryColor: #3B9B9B;
+$primaryDarkerColor: #175E71;
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+
+  .nav-link {
+    color: $primaryColor;
+
+    &:hover {
+      color: $primaryDarkerColor;
+    }
+
+    &.active {
+      background-color: $primaryColor !important;
+
+      &:hover {
+        background-color: $primaryDarkerColor !important;
+      }
+    }
+  }
+}
+
+.navbar {
+  z-index: 1021;
+}
+
+.navbar-logo {
+  width: 54px;
+  height: auto;
+}
+
+.direction-rtl {
+  direction: rtl;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.btn-andalusia-primary {
+  background-color: $primaryColor;
+  color: #f3f3f3;
+
+  &:hover {
+    background-color: $primaryDarkerColor;
+    color: #f3f3f3;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.bg-andalusia-primary {
+  background-color: $primaryColor;
+}
+
+html, body {
+  height: 100%;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
