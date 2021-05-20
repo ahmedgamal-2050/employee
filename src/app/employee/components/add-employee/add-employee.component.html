@@ -1,0 +1,54 @@
+<h5 class="card-title text-center pb-3">Add Employee</h5>
+<form [formGroup]="addEmployeeForm" (submit)="addEmployee()" class="" novalidate>
+  <div class="row mx-0 g-3 py-3">
+    <div class="col-6 mb-3">
+      <label for="employeeName" class="mb-1">Employee Name <span class="text-danger">*</span></label>
+      <input type="text" id="employeeName" class="form-control" placeholder="Employee Name"
+             formControlName="employeeName" [ngClass]="employeeName && employeeName.invalid && (employeeName.dirty || employeeName.touched) ? 'border-danger':''">
+      <div *ngIf="employeeName && employeeName.invalid && (employeeName.dirty || employeeName.touched)" class="text-danger">
+        Employee name is required.
+      </div>
+    </div>
+    <div class="col-6 mb-3">
+      <label for="department" class="mb-1">Department <span class="text-danger">*</span></label>
+      <select class="form-control px-2" formControlName="department" id="department"
+              [ngClass]="department && department.invalid && (department.dirty || department.touched) ? 'border-danger':''">
+        <option selected disabled value="null">Choose department</option>
+        <option value="financial">Financial</option>
+        <option value="technical">Technical</option>
+        <option value="hr">HR</option>
+        <option value="marketing">Marketing</option>
+      </select>
+      <div *ngIf="department && department.invalid && (department.dirty || department.touched)" class="text-danger">
+        Department is required.
+      </div>
+    </div>
+    <div class="col-6 mb-3">
+      <label for="employeeCode" class="mb-1">Employee Code</label>
+      <input type="text" id="employeeCode" class="form-control" placeholder="Employee Code (Optional)"
+             formControlName="employeeCode" pattern="[0-9]*">
+    </div>
+    <div class="col-6 mb-3">
+      <label for="birthday" class="mb-1">Birthday</label>
+      <input type="date" id="birthday" class="form-control" formControlName="birthday">
+    </div>
+    <div class="col-6 mb-3">
+      <span class="me-3">
+        <input class="form-check-input me-1" type="radio" formControlName="gender" id="male" value="male" checked>
+        <label class="form-check-label" for="male">
+          Male
+        </label>
+      </span>
+      <span>
+        <input class="form-check-input me-1" type="radio" formControlName="gender" value="female" id="female">
+        <label class="form-check-label" for="female">
+          Female
+        </label>
+      </span>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-andalusia-primary"
+              [disabled]="employeeName?.invalid || department?.invalid">Submit</button>
+    </div>
+  </div>
+</form>

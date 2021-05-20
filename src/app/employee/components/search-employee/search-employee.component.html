@@ -1,0 +1,107 @@
+<h5 class="card-title text-center pb-4">Search Employee</h5>
+<div *ngIf="employeeList.length">
+  <form [formGroup]="searchEmployeeForm" (submit)="searchEmployee()" class="" novalidate>
+    <div class="row justify-content-center mx-0 g-3">
+      <div class="col-5">
+        <label for="employeeName" class="mb-1">Employee Name <span class="text-danger">*</span></label>
+        <input type="text" id="employeeName" class="form-control" placeholder="Employee Name"
+               formControlName="employeeName" [ngClass]="employeeName && employeeName.invalid && (employeeName.dirty || employeeName.touched) ? 'border-danger':''">
+        <div *ngIf="employeeName && employeeName.invalid && (employeeName.dirty || employeeName.touched)" class="text-danger">
+          Employee name is required.
+        </div>
+      </div>
+      <div class="col-5">
+        <label for="department" class="mb-1">Department <span class="text-danger">*</span></label>
+        <select class="form-control px-2" formControlName="department" id="department"
+                [ngClass]="department && department.invalid && (department.dirty || department.touched) ? 'border-danger':''">
+          <option selected disabled value="null">Choose department</option>
+          <option value="financial">Financial</option>
+          <option value="technical">Technical</option>
+          <option value="hr">HR</option>
+          <option value="marketing">Marketing</option>
+        </select>
+        <div *ngIf="department && department.invalid && (department.dirty || department.touched)" class="text-danger">
+          Department is required.
+        </div>
+      </div>
+      <div class="col-2 d-flex">
+        <button type="submit" class="btn btn-andalusia-primary mt-auto"
+                [disabled]="employeeName?.invalid || department?.invalid">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!--<table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th scope="col"><input class="form-check-input" type="checkbox" [(ngModel)]="isSelected"></th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Department</th>
+        <th scope="col">Employee Code</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Gender</th>
+      </tr>
+    </thead>
+  </table>-->
+  <table mat-table [dataSource]="dataSource" class="mt-4 w-100">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="isSelected">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Employee Name Column -->
+    <ng-container matColumnDef="employeeName">
+      <th mat-header-cell *matHeaderCellDef> Employee Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
+    </ng-container>
+
+    <!-- Department Column -->
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef> Department </th>
+      <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+    </ng-container>
+
+    <!-- Code Column -->
+    <ng-container matColumnDef="employeeCode">
+      <th mat-header-cell *matHeaderCellDef> Employee Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeCode}} </td>
+    </ng-container>
+
+    <!-- Birthday Column -->
+    <ng-container matColumnDef="birthday">
+      <th mat-header-cell *matHeaderCellDef> Birthday </th>
+      <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+    </ng-container>
+
+    <!-- Gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef> Gender </th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="!employeeList.length" class="py-3 text-center text-danger">
+  There is no employee data yet!! Please add an employee data first.
+</div>

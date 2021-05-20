@@ -1,0 +1,24 @@
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" routerLink="/addEmployee" aria-selected="true" data-bs-target="#add-employee"
+       data-bs-toggle="pill" role="tab" aria-controls="pills-add-employee">Add Employee</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/searchEmployee" aria-selected="false" data-bs-target="#search-employee"
+       data-bs-toggle="pill" role="tab" aria-controls="pills-search-employee">Search Employee</a>
+  </li>
+</ul>
+
+<div class="card mt-3">
+  <div class="card-body">
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="add-employee" role="tabpanel" aria-labelledby="pills-add-employee-tab">
+        <app-add-employee (add)="addEmployee($event)"></app-add-employee>
+      </div>
+      <div class="tab-pane fade" id="search-employee" role="tabpanel" aria-labelledby="pills-search-employee-tab">
+        <app-search-employee [employeeList]="employeeList"></app-search-employee>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\employee",
+    "\\src\\app\\employee\\components",
+    "\\src\\app\\employee\\components\\add-employee",
+    "\\src\\app\\employee\\container\\employee-container",
+    "\\src\\assets"
+  ],
+  "SelectedNode": "\\src\\app\\employee\\employee.module.ts",
+  "PreviewInSolutionExplorer": false
+}
